@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QTimer>
 
 namespace Ui {
 class Widget;
@@ -18,6 +19,9 @@ public:
 private:
     Ui::Widget *ui;
     QTimer* timer;
+
+private slots:
+    void timeSetWidget();
 };
 
 #endif // WIDGET_H
