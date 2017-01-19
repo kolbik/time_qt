@@ -22,4 +22,5 @@ Widget::~Widget()
 void Widget::timeSetWidget()
 {
     ui->timeEdit->setTime(QTime::currentTime());
+    ui->labelTimeEdit->setText( QString::number(QTime::currentTime().msec()) );
 }
