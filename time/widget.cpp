@@ -7,11 +7,15 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    timer = new QTimer();
+    curStatus();
+    curTime.setHMS(13, 49, 00);
+    setLcdTime(ui->lcdTime, &curTime);
 
-    timer->start(1000);
-
+    timer = new QTimer(this);
+    timer->start(5000);
     connect(timer, SIGNAL(timeout()), this, SLOT(timeSetWidget()));
+    timeSetWidget();
+
 }
 
 Widget::~Widget()
@@ -19,8 +23,36 @@ Widget::~Widget()
     delete ui;
 }
 
+void Widget::settingLcdTime(QLCDNumber *lcd)
+{
+
+}
+
+void Widget::setLcdTime(QLCDNumber *lcd, QTime *time)
+{
+    QString str;
+
+    str.clear();
+    str.append(QString::number(time->hour()));
+    str.append(QString::number(time->minute()));
+    lcd->display(str);
+
+    lcd->setToolTip("LCD Time");
+}
+
 void Widget::timeSetWidget()
 {
-    ui->timeEdit->setTime(QTime::currentTime());
-    ui->labelTimeEdit->setText( QString::number(QTime::currentTime().msec()) );
+    //ui->timeEdit->setTime(QTime::currentTime());
+    curTime = QTime::currentTime();
+    setLcdTime(ui->lcdTime, &curTime);
+
+    if(curTime.second() > 30)
+        ui->labelCurStatus->setText("Мониторинг вкл. Статус отдых");
+    else
+        ui->labelCurStatus->setText("Мониторинг вкл. Статус работа");
+}
+
+void Widget::curStatus()
+{
+    ui->labelCurStatus->setText("Мониторинг вкл...");
 }
