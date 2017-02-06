@@ -7,6 +7,8 @@
 #include <QTime>
 #include <QFrame>
 
+#include "popup.h"
+
 namespace Ui {
 class Widget;
 }
@@ -26,6 +28,7 @@ private:
     Ui::Widget *ui;
     QTimer* timer;
     QTime   curTime;
+    PopUp *popUp;       // Объявляем объект всплывающего сообщения
 
 private slots:
     void timeSetWidget();

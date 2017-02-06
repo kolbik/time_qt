@@ -7,6 +7,8 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    popUp = new PopUp();
+
     curStatus();
     curTime.setHMS(13, 49, 00);
     setLcdTime(ui->lcdTime, &curTime);
@@ -46,8 +48,12 @@ void Widget::timeSetWidget()
     curTime = QTime::currentTime();
     setLcdTime(ui->lcdTime, &curTime);
 
-    if(curTime.second() > 30)
+    if(curTime.minute() > 50)
+    {
         ui->labelCurStatus->setText("Мониторинг вкл. Статус отдых");
+        popUp->setPopupText(QString("Инженер, отдохни!"));
+        popUp->show();
+    }
     else
         ui->labelCurStatus->setText("Мониторинг вкл. Статус работа");
 }
