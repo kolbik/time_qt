@@ -20,3 +20,10 @@ HEADERS  += widget.h \
     popup.h
 
 FORMS    += widget.ui
+
+
+# в зависимости от режима сборки проекта
+# запускаем win deploy приложения в целевой директории, то есть собираем все dll
+
+#QMAKE_POST_LINK = $(COPY_FILE) "$(DESTDIR_TARGET)" debug
+#QMAKE_POST_LINK += $$(QTDIR)/bin/windeployqt "$(DESTDIR_TARGET)"
