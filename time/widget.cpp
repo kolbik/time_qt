@@ -27,7 +27,7 @@ Widget::~Widget()
 
 void Widget::settingLcdTime(QLCDNumber *lcd)
 {
-
+    Q_UNUSED(lcd);
 }
 
 void Widget::setLcdTime(QLCDNumber *lcd, QTime *time)
